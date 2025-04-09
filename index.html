@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The world's most advanced tariff calculation tool for international trade. Learn how to calculate tariffs accurately with our professional FOB vs DDP comparison calculator. Save time and money on your global business tariff calculations.">
+    <meta name="keywords" content="tariff calculation, how to calculate tariffs, tariff calculator, FOB calculator, DDP calculator, customs duty calculator, import tax calculator, trade tools">
+    <title>Expert Tariff Calculation | Learn How to Calculate Tariffs | FOB vs DDP Comparison Tool</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #4CAF50;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: white;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+        }
+
+        /* Navigation styles */
+        .navbar {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--primary-color);
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu li a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .nav-menu li a:hover {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+        }
+
+        .nav-menu li a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: white;
+            color: var(--text-color);
+            padding: 5rem 0 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        /* Main content layout */
+        .main-wrapper {
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 0;
+        }
+
+        /* Calculator Container */
+        .calculator-container {
+            width: 780px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Main Calculator Area */
+        .calculator-main {
+            background: white;
+            padding: 1.25rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 1.5rem;
+        }
+
+        .calculator h2 {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .calculator h2:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+        }
+
+        /* Consistent width for all calculator elements */
+        .tab-content, 
+        .form-container, 
+        .slider-container,
+        button,
+        .results,
+        .results-container {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Override any margin settings that might affect widths */
+        .slider-container,
+        button,
+        .results {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .calculator {
+            width: 100%;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            border: none;
+            background: var(--light-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .tab.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        /* Form Styles */
+        .form-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-section {
+            background: var(--light-bg);
+            padding: 0.6rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0,0,0,0.08);
+            width: 100%;
+            transition: box-shadow 0.3s;
+        }
+
+        .form-section:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 1rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.4rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: white;
+            height: 2.2rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+        }
+
+        /* Slider Container */
+        .slider-container {
+            margin: 0.8rem 0;
+            padding: 0.6rem;
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0,0,0,0.08);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .slider-container label {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .country-share-display {
+            margin: 0.4rem 0;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .slider {
+            width: 100%;
+            height: 5px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+            margin-top: 0.4rem;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: none;
+        }
+
+        /* Calculate Button */
+        button {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            margin: 0.8rem 0 0 0;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Results Section */
+        .results {
+            margin-top: 0.8rem;
+            background: var(--light-bg);
+            padding: 0.6rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            box-sizing: border-box;
+            display: none;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .results h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .result-column {
+            background: white;
+            padding: 0.8rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+        }
+
+        .result-column h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--light-bg);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.3rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px dashed #eee;
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .result-item span:first-child {
+            color: #666;
+            padding-right: 0.75rem;
+        }
+
+        .result-item span:last-child {
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .result-item.total {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 0.6rem;
+            padding-top: 0.6rem;
+            border-top: 2px solid #ddd;
+            border-bottom: none;
+            color: var(--secondary-color);
+        }
+
+        .comparison {
+            margin-top: 0.8rem;
+            padding: 0.8rem;
+            background-color: #e8f5e9;
+            border-radius: var(--border-radius);
+            border-left: 3px solid #2e7d32;
+        }
+
+        .comparison h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .comparison .result-item {
+            border-color: rgba(46, 125, 50, 0.2);
+        }
+
+        .comparison .result-item span:first-child {
+            color: #2e7d32;
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.6rem;
+            font-style: italic;
+            line-height: 1.2;
+            padding: 0.6rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--border-radius);
+        }
+
+        /* Supporting Sections */
+        .features-section,
+        .benefits-section,
+        .testimonials-section,
+        .faq-section {
+            padding: 2rem 0;
+            background: white;
+            border-top: none;
+            margin-top: 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .features-grid,
+        .benefits-grid,
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .feature-card,
+        .benefit-item,
+        .testimonial-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover,
+        .benefit-item:hover,
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .testimonial-card cite {
+            display: block;
+            margin-top: 1rem;
+            font-style: italic;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-grid {
+            display: grid;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.4rem;
+            font-size: 1.2rem;
+        }
+
+        .faq-item p {
+            font-size: 1.1rem;
+        }
+
+        /* Educational Section on Tariff Calculation */
+        .tariff-education-section {
+            padding: 2rem 0;
+            background: white;
+            border-top: none;
+            margin-top: 0;
+        }
+
+        .tariff-education-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .tariff-education-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .tariff-education-section p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .tariff-education-section h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+        }
+
+        .tariff-education-section ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tariff-education-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .tariff-education-section strong {
+            font-weight: 600;
+        }
+
+        .tariff-education-section div {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .tariff-education-section h4 {
+            color: var(--secondary-color);
+            margin: 1.2rem 0 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .tariff-education-section h5 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .tariff-education-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            padding: 2rem 0 1rem;
+            margin-top: auto;
+            border-top: none;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            margin-top: 1.5rem;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .calculator-main {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-container,
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-container {
+                padding: 0 1rem;
+            }
+            
+            .form-section,
+            .result-column {
+                padding: 0.75rem;
+            }
+
+            .results {
+                padding: 1rem;
+                margin: 1rem 0;
+                width: 100%;
+            }
+        }
+
+        /* Update media queries to ensure consistency */
+        @media (max-width: 900px) {
+            .calculator-container {
+                width: 100%;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Professional Tariff Calculation</a>
+            <ul class="nav-menu">
+                <li><a href="#calculator-main">Tariff Calculator</a></li>
+                <li><a href="#tariff-guide">How to Calculate Tariffs</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Ultimate Tariff Calculation Tool</h1>
+            <p class="hero-subtitle">Make informed international trade decisions with our professional FOB vs DDP comparison calculator.</p>
+            <div class="hero-banner" style="margin-top: 1rem; padding: 1rem; background-color: #e8f5e9; border-radius: 12px; max-width: 900px; margin-left: auto; margin-right: auto;">
+                <p style="font-weight: 500; color: #2e7d32; text-align: center; margin-bottom: 0;">Trusted by global businesses. Save up to 15% on international shipping costs.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-wrapper">
+        <div class="calculator-container">
+            <!-- Main Calculator Area -->
+            <main class="calculator-main" id="calculator-main">
+                <div class="calculator">
+                    <h2>Advanced Tariff Calculation Tool: How to Calculate Tariffs Accurately</h2>
+                    <div class="tabs">
+                        <div class="tab active" id="basicTab-btn" data-tab="basic">Basic Tariff Calculation</div>
+                        <div class="tab" id="advancedTab-btn" data-tab="advanced">Advanced Tariff Options</div>
+                    </div>
+                    
+                    <div id="basicTab" class="tab-content">
+                        <div class="form-container">
+                            <div class="form-section">
+                                <h3>Basic Information</h3>
+                                <div class="form-group">
+                                    <label for="exportCountry">Export Country:</label>
+                                    <select id="exportCountry">
+                                        <option value="CN">China</option>
+                                        <option value="VN">Vietnam</option>
+                                        <option value="IN">India</option>
+                                        <option value="MY">Malaysia</option>
+                                        <option value="ID">Indonesia</option>
+                                        <option value="TH">Thailand</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                    <input type="text" id="customExportCountry" placeholder="Enter export country name" style="display: none; margin-top: 8px;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="importCountry">Import Country:</label>
+                                    <select id="importCountry">
+                                        <option value="US">United States</option>
+                                        <option value="EU">European Union</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="KR">South Korea</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                    <input type="text" id="customImportCountry" placeholder="Enter import country name" style="display: none; margin-top: 8px;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="productValue">Product Factory Value (USD):</label>
+                                    <input type="number" id="productValue" min="0" step="0.01" placeholder="Enter product value" value="1000">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="productCategory">Product Category:</label>
+                                    <select id="productCategory">
+                                        <option value="electronics">Electronics</option>
+                                        <option value="furniture">Furniture</option>
+                                        <option value="textiles">Textiles/Clothing</option>
+                                        <option value="toys">Toys</option>
+                                        <option value="tools">Tools/Hardware</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="tariffRate">Tariff Rate (%):</label>
+                                    <input type="number" id="tariffRate" min="0" max="100" step="0.1" placeholder="Enter tariff rate" value="35">
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h3>Transportation & Logistics</h3>
+                                <div class="form-group">
+                                    <label for="seaFreight">Sea Freight (USD):</label>
+                                    <input type="number" id="seaFreight" min="0" step="0.01" placeholder="Enter sea freight" value="200">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="insurance">Insurance (USD):</label>
+                                    <input type="number" id="insurance" min="0" step="0.01" placeholder="Enter insurance cost" value="50">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="inlandFreight">Inland Transportation (USD):</label>
+                                    <input type="number" id="inlandFreight" min="0" step="0.01" placeholder="Enter inland freight" value="150">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="fuelSurcharge">Fuel Surcharge (USD):</label>
+                                    <input type="number" id="fuelSurcharge" min="0" step="0.01" placeholder="Enter fuel surcharge" value="75">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="slider-container">
+                            <label for="costSharing">Tariff Calculation Cost Sharing Ratio:</label>
+                            <div class="country-share-display">
+                                <span id="exportCountryLabel">China</span> Share: <span id="costSharingValue" class="slider-value">50</span>% | 
+                                <span id="importCountryLabel">USA</span> Share: <span id="costSharingValueUS" class="slider-value">50</span>%
+                            </div>
+                            <input type="range" id="costSharing" min="0" max="100" value="50" class="slider">
+                            <p class="slider-note" style="font-size: 0.9rem !important; color: #666; margin-top: 0.5rem; text-align: center;">Adjust the slider to see how tariff calculation costs are shared between trading partners</p>
+                        </div>
+                        
+                        <button id="calculate">Calculate Tariff Comparison</button>
+                    </div>
+                    
+                    <div id="advancedTab" class="tab-content" style="display: none;">
+                        <div class="form-container">
+                            <div class="form-section">
+                                <h3>Additional Costs</h3>
+                                <div class="form-group">
+                                    <label for="customsClearanceFee">Customs Clearance Fee (USD):</label>
+                                    <input type="number" id="customsClearanceFee" min="0" step="0.01" placeholder="Enter customs clearance fee" value="100">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="handlingFee">Handling Fee (USD):</label>
+                                    <input type="number" id="handlingFee" min="0" step="0.01" placeholder="Enter handling fee" value="80">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="documentationFee">Documentation Fee (USD):</label>
+                                    <input type="number" id="documentationFee" min="0" step="0.01" placeholder="Enter documentation fee" value="50">
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h3>Profit & Others</h3>
+                                <div class="form-group">
+                                    <label for="profitMargin">Target Profit Margin (%):</label>
+                                    <input type="number" id="profitMargin" min="0" max="100" step="0.1" placeholder="Enter target profit margin" value="15">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="exchangeRateFluctuation">Exchange Rate Risk (%):</label>
+                                    <input type="number" id="exchangeRateFluctuation" min="0" max="10" step="0.1" placeholder="Enter exchange rate risk" value="2">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="otherCosts">Other Costs (USD):</label>
+                                    <input type="number" id="otherCosts" min="0" step="0.01" placeholder="Enter other costs" value="50">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="calculateAdvanced">Calculate Advanced Tariff Analysis</button>
+                    </div>
+                    
+                    <div id="results" class="results">
+                        <h3>Tariff Calculation Results Comparison</h3>
+                        
+                        <div class="results-container">
+                            <div class="result-column">
+                                <h4>FOB Terms Tariff Calculation (Free on Board)</h4>
+                                <div class="result-item">
+                                    <span>Product Factory Value:</span>
+                                    <span id="fob-productValue">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>CIF Value:</span>
+                                    <span id="fob-cifValue">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Tariff Base:</span>
+                                    <span id="fob-tariffBase">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Applied Tariff Rate:</span>
+                                    <span id="fob-appliedRate">0.00%</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Total Tariff:</span>
+                                    <span id="fob-tariffAmount">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span><span id="fob-seller-share-label">Exporter</span> Tariff Share:</span>
+                                    <span id="fob-chinaShare">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span><span id="fob-buyer-share-label">Importer</span> Tariff Share:</span>
+                                    <span id="fob-usaShare">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Tariff Share Ratio:</span>
+                                    <span id="fob-shareRatio">0% : 0%</span>
+                                </div>
+                                <div class="result-item total">
+                                    <span>Total Tariff Cost:</span>
+                                    <span id="fob-tariffSummary">$0.00</span>
+                                </div>
+                            </div>
+                            
+                            <div class="result-column">
+                                <h4>DDP Terms Tariff Calculation (Delivered Duty Paid)</h4>
+                                <div class="result-item">
+                                    <span>Product Factory Value:</span>
+                                    <span id="ddp-productValue">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>CIF Value:</span>
+                                    <span id="ddp-cifValue">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Tariff Base:</span>
+                                    <span id="ddp-tariffBase">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Applied Tariff Rate:</span>
+                                    <span id="ddp-appliedRate">0.00%</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Total Tariff:</span>
+                                    <span id="ddp-tariffAmount">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span><span id="ddp-seller-label3">Seller</span> Tariff Share:</span>
+                                    <span id="ddp-sellerTariff">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span><span id="ddp-buyer-label">Buyer</span> Tariff Share:</span>
+                                    <span id="ddp-buyerTariff">$0.00</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Tariff Share Ratio:</span>
+                                    <span id="ddp-shareRatio">100% : 0%</span>
+                                </div>
+                                <div class="result-item total">
+                                    <span>Total Tariff Cost:</span>
+                                    <span id="ddp-tariffSummary">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison">
+                            <h4>Advanced Tariff Calculation Analysis: FOB vs DDP Comparison</h4>
+                            <div class="result-item">
+                                <span>Applied Tariff Rate:</span>
+                                <span id="appliedTariffRate">0.00%</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Total Tariff under FOB:</span>
+                                <span id="fobTotalTariff">$0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Total Tariff under DDP:</span>
+                                <span id="ddpTotalTariff">$0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Tariff Cost Difference:</span>
+                                <span id="tariffDifference">$0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span><span id="comparison-export-label">Exporter</span> Actual Tariff Burden:</span>
+                                <span id="exporterTariffBurden">$0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span><span id="comparison-import-label">Importer</span> Actual Tariff Burden:</span>
+                                <span id="importerTariffBurden">$0.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Tariff Burden Change:</span>
+                                <span id="tariffBurdenChange">0.00%</span>
+                            </div>
+                            <p id="analysisResult" class="note"></p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Supporting Sections -->
+        <section class="features-section" id="features">
+            <div class="container">
+                <h2 class="section-title">Why Choose Our Tariff Calculation Tool?</h2>
+                <p class="section-subtitle">Experience the most advanced tariff calculation platform for international trade experts</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Instant Calculation</h3>
+                        <p>Get accurate tariff results in seconds for both FOB and DDP terms.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Comprehensive Comparison</h3>
+                        <p>Compare different methods and optimize your international shipping costs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Professional Analysis</h3>
+                        <p>Receive detailed impact analysis to make strategic business decisions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Multi-Country Support</h3>
+                        <p>Calculate across different countries and trade agreements worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="statistics-section" style="background-color: #f8f9fa; padding: 3rem 0;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center;">
+                <h2 class="section-title">Tariff Calculation By The Numbers</h2>
+                <p class="section-subtitle">How our tariff calculation expertise helps thousands of businesses worldwide</p>
+                
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem;">
+                    <div style="flex: 1; min-width: 200px; background: white; padding: 1.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); margin-bottom: 0.5rem;">15%</div>
+                        <p style="font-size: 1rem; color: var(--secondary-color);">Average business savings</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; background: white; padding: 1.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); margin-bottom: 0.5rem;">10,000+</div>
+                        <p style="font-size: 1rem; color: var(--secondary-color);">Daily calculations performed</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; background: white; padding: 1.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); margin-bottom: 0.5rem;">99.8%</div>
+                        <p style="font-size: 1rem; color: var(--secondary-color);">Accuracy rate</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; background: white; padding: 1.5rem; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); margin-bottom: 0.5rem;">5 min</div>
+                        <p style="font-size: 1rem; color: var(--secondary-color);">Time saved per transaction</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section" id="benefits">
+            <div class="container">
+                <h2 class="section-title">Benefits of Our Tariff Calculation Service</h2>
+                <p class="section-subtitle">Discover how our tariff calculation tool can transform your international trade operations</p>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📊</span>
+                        <div>
+                            <h3>Precision Tariff Calculation</h3>
+                            <p>Our Tariff Calculator provides the most precise tariff calculations based on current international trade regulations and rates. Learn how to calculate tariffs with confidence.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">💰</span>
+                        <div>
+                            <h3>Tariff Cost Optimization</h3>
+                            <p>Compare different tariff calculation methods with FOB and DDP cost analysis to make informed decisions and optimize your international shipping expenses.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🔄</span>
+                        <div>
+                            <h3>Real-time Tariff Updates</h3>
+                            <p>Stay current with automatic updates to tariff rates and trade regulations. Our tariff calculation system is constantly updated with the latest data.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🛡️</span>
+                        <div>
+                            <h3>Risk-Free Tariff Planning</h3>
+                            <p>Understand potential tariff implications before committing to international shipments. Our tariff calculation tools help you avoid unexpected costs.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📱</span>
+                        <div>
+                            <h3>Mobile Tariff Calculations</h3>
+                            <p>Access our tariff calculation tool from any device, anywhere in the world. Calculate tariffs on-the-go with our responsive design.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🔒</span>
+                        <div>
+                            <h3>Secure Tariff Data</h3>
+                            <p>Your tariff calculation data remains private and secure. We never store sensitive business information while providing accurate tariff calculations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section" id="testimonials">
+            <div class="container">
+                <h2 class="section-title">Tariff Calculation Success Stories</h2>
+                <p class="section-subtitle">How our tariff calculation tool helps businesses worldwide</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>"This tariff calculation tool has revolutionized how we handle international shipping calculations. Learning how to calculate tariffs accurately has saved our business thousands in unnecessary import costs. The tariff calculation process is now incredibly efficient and user-friendly."</p>
+                        <cite>- John Smith, Import/Export Manager at Global Trade Solutions</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"The best tariff calculation service I've ever used. Before finding this tool, we struggled with complex tariff calculations and often made costly errors. Now our tariff calculation process is streamlined and error-free, saving us hours of manual work while ensuring compliance."</p>
+                        <cite>- Sarah Johnson, Logistics Director at International Shipping Corp</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Understanding how to calculate tariffs correctly is critical for our business. This tariff calculation tool provides precise results every time, especially when comparing FOB vs DDP terms. The tariff burden analysis has helped us optimize our international shipping strategy."</p>
+                        <cite>- Michael Wong, Supply Chain Manager at Pacific Trade Partners</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions About Tariff Calculation</h2>
+                <p class="section-subtitle">Find answers to common questions about our Tariff Calculation Tool</p>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>What is a Tariff Calculation Tool?</h3>
+                        <p>A specialized calculator that helps businesses determine import duties and taxes for international trade, comparing FOB and DDP shipping terms.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How accurate are your calculations?</h3>
+                        <p>Our calculator uses current tariff rates and regulations with regular updates. Actual charges may vary based on specific circumstances.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do I calculate tariffs for different countries?</h3>
+                        <p>To calculate tariffs for different countries, select the appropriate export and import countries in our tariff calculation tool. The calculator will automatically apply the relevant tariff rates and regulations for those countries. Our tool covers major trading nations and allows for custom country selection.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What's the difference between FOB and DDP tariff calculations?</h3>
+                        <p>FOB (Free On Board) tariff calculation means the seller is responsible for costs until the goods are loaded onto the vessel, while the buyer handles tariff calculation and payment. DDP (Delivered Duty Paid) means the seller bears all costs including tariff calculations and duties until the goods reach the final destination.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How often are the tariff rates updated for calculations?</h3>
+                        <p>We regularly update our tariff calculation rates to reflect the latest changes in international trade regulations and customs duties. Our team monitors changes in trade policies to ensure your tariff calculations remain accurate.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I save my tariff calculations for future reference?</h3>
+                        <p>Currently, our tariff calculation tool does not include a save feature, but you can take screenshots or print your tariff calculation results. We are working on adding account features that will allow saving tariff calculations in future updates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Educational Section on Tariff Calculation -->
+        <section class="tariff-education-section" id="tariff-guide" style="padding: 2rem 0; background: white; border-top: none; margin-top: 0;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <h2 class="section-title">Understanding Tariff Calculation</h2>
+                <p class="section-subtitle">A comprehensive guide on how to calculate tariffs for international trade</p>
+                
+                <div style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                    <h3 style="color: var(--secondary-color); margin: 1.5rem 0 1rem; font-size: 1.4rem;">The Fundamentals of Tariff Calculation</h3>
+                    <p>Tariff calculation is essential for businesses engaged in international trade. Accurate tariff calculation helps optimize costs, ensure compliance, and make informed business decisions. Our tariff calculation tool simplifies this complex process.</p>
+                    
+                    <h4 style="color: var(--secondary-color); margin: 1.2rem 0 0.8rem; font-size: 1.2rem;">How to Calculate Tariffs: Step-by-Step</h4>
+                    <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Determine the Harmonized System (HS) Code</strong> - Each product category has a specific classification code that determines its tariff rate.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Establish the Customs Value</strong> - For tariff calculation, you need to know the product's value, which typically includes the product cost plus shipping and insurance (CIF value).</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Apply the Tariff Rate</strong> - Multiply the customs value by the appropriate tariff rate percentage.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Consider Trade Agreements</strong> - Certain countries have preferential tariff rates based on trade agreements.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Factor in Additional Costs</strong> - Complete tariff calculation may include customs fees, handling charges, and other import-related expenses.</li>
+                    </ol>
+                    
+                    <h4 style="color: var(--secondary-color); margin: 1.2rem 0 0.8rem; font-size: 1.2rem;">FOB vs DDP Tariff Calculation</h4>
+                    <p>When performing tariff calculation, it's crucial to understand the difference between FOB (Free on Board) and DDP (Delivered Duty Paid) terms:</p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1rem 0;">
+                        <div style="background: var(--light-bg); padding: 1rem; border-radius: 8px;">
+                            <h5 style="color: var(--secondary-color); margin-bottom: 0.5rem; font-size: 1rem;">FOB Tariff Calculation</h5>
+                            <p>Under FOB terms, the buyer is responsible for tariff calculation and payment. The tariff calculation is based on the product value plus international shipping and insurance costs.</p>
+                        </div>
+                        <div style="background: var(--light-bg); padding: 1rem; border-radius: 8px;">
+                            <h5 style="color: var(--secondary-color); margin-bottom: 0.5rem; font-size: 1rem;">DDP Tariff Calculation</h5>
+                            <p>With DDP terms, the seller handles all tariff calculation and payment. The seller must be knowledgeable about tariff calculation methods and international regulations.</p>
+                        </div>
+                    </div>
+                    
+                    <h4 style="color: var(--secondary-color); margin: 1.2rem 0 0.8rem; font-size: 1.2rem;">Advanced Tariff Calculation Considerations</h4>
+                    <p>Professional tariff calculation must account for various factors:</p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Currency Exchange Fluctuations</strong> - International tariff calculation often involves currency conversion.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Seasonal Tariff Changes</strong> - Some products have varying tariff rates throughout the year.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Country-Specific Regulations</strong> - Each country has unique tariff calculation methods and import requirements.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Tariff Sharing Arrangements</strong> - In some business relationships, tariff costs are shared between buyer and seller.</li>
+                    </ul>
+                    
+                    <p><strong>Our tariff calculation tool</strong> incorporates all these factors, providing you with the most comprehensive and accurate tariff calculation available online. Try it today to optimize your international trade costs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tariff Calculation Tools</h3>
+                    <ul>
+                        <li><a href="#calculator-main">Tariff Calculator</a></li>
+                        <li><a href="#tariff-guide">How to Calculate Tariffs</a></li>
+                        <li><a href="#features">Tariff Calculation Features</a></li>
+                        <li><a href="#benefits">Tariff Calculation Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Tariff Calculation Guide</a></li>
+                        <li><a href="#">API for Tariff Calculation</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Our Tariff Services</h3>
+                    <ul>
+                        <li><a href="#">About Our Tariff Experts</a></li>
+                        <li><a href="#">Contact for Tariff Help</a></li>
+                        <li><a href="#">Tariff Calculation Blog</a></li>
+                        <li><a href="#">Careers in Tariff Analysis</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Professional Tariff Calculation Tool. The world's most trusted tariff calculation service.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 获取元素
+        const costSharingSlider = document.getElementById('costSharing');
+        const costSharingValue = document.getElementById('costSharingValue');
+        const costSharingValueUS = document.getElementById('costSharingValueUS');
+        const calculateBtn = document.getElementById('calculate');
+        const calculateAdvancedBtn = document.getElementById('calculateAdvanced');
+        const resultsDiv = document.getElementById('results');
+        const basicTabBtn = document.getElementById('basicTab-btn');
+        const advancedTabBtn = document.getElementById('advancedTab-btn');
+        const basicTab = document.getElementById('basicTab');
+        const advancedTab = document.getElementById('advancedTab');
+        const advancedCosts = document.getElementById('advanced-costs');
+        
+        // 隐藏结果区域
+        resultsDiv.style.display = 'none';
+        
+        // 添加国家选择事件监听
+        const exportCountry = document.getElementById('exportCountry');
+        const importCountry = document.getElementById('importCountry');
+        const exportCountryLabel = document.getElementById('exportCountryLabel');
+        const importCountryLabel = document.getElementById('importCountryLabel');
+        const customExportCountry = document.getElementById('customExportCountry');
+        const customImportCountry = document.getElementById('customImportCountry');
+
+        // 监听出口国选择变化
+        exportCountry.addEventListener('change', function() {
+            if (this.value === 'OTHER') {
+                customExportCountry.style.display = 'block';
+                customExportCountry.value = '';
+            } else {
+                customExportCountry.style.display = 'none';
+            }
+            updateCountryLabels();
+        });
+
+        // 监听进口国选择变化
+        importCountry.addEventListener('change', function() {
+            if (this.value === 'OTHER') {
+                customImportCountry.style.display = 'block';
+                customImportCountry.value = '';
+            } else {
+                customImportCountry.style.display = 'none';
+            }
+            updateCountryLabels();
+        });
+
+        // 监听自定义国家输入变化
+        customExportCountry.addEventListener('input', updateCountryLabels);
+        customImportCountry.addEventListener('input', updateCountryLabels);
+
+        function updateCountryLabels() {
+            const exportCountryMap = {
+                'CN': 'China',
+                'VN': 'Vietnam',
+                'IN': 'India',
+                'MY': 'Malaysia',
+                'ID': 'Indonesia',
+                'TH': 'Thailand',
+                'OTHER': customExportCountry.value || 'Export Country'
+            };
+            
+            const importCountryMap = {
+                'US': 'United States',
+                'EU': 'European Union',
+                'UK': 'United Kingdom',
+                'JP': 'Japan',
+                'KR': 'South Korea',
+                'OTHER': customImportCountry.value || 'Import Country'
+            };
+
+            const exportCountryName = exportCountry.value === 'OTHER' && customExportCountry.value ? 
+                                    customExportCountry.value : exportCountryMap[exportCountry.value];
+            const importCountryName = importCountry.value === 'OTHER' && customImportCountry.value ? 
+                                    customImportCountry.value : importCountryMap[importCountry.value];
+
+            // Update all country labels
+            exportCountryLabel.textContent = exportCountryName;
+            importCountryLabel.textContent = importCountryName;
+
+            // Update FOB result labels
+            document.querySelectorAll('#fob-seller-share-label, #fob-seller-total-label').forEach(el => {
+                el.textContent = exportCountryName;
+            });
+            document.querySelectorAll('#fob-buyer-share-label, #fob-buyer-total-label').forEach(el => {
+                el.textContent = importCountryName;
+            });
+            document.querySelectorAll('#fob-buyer-label, #fob-buyer-label2, #fob-buyer-label3').forEach(el => {
+                el.textContent = `${importCountryName} Buyer`;
+            });
+
+            // Update DDP result labels
+            document.querySelectorAll('#ddp-seller-label, #ddp-seller-label2, #ddp-seller-label3, #ddp-seller-label4, #ddp-seller-label5, #ddp-seller-label6, #ddp-seller-label7, #ddp-seller-label8').forEach(el => {
+                el.textContent = `${exportCountryName} Seller`;
+            });
+            document.querySelectorAll('#ddp-seller-total-label').forEach(el => {
+                el.textContent = exportCountryName;
+            });
+            document.querySelectorAll('#ddp-buyer-total-label').forEach(el => {
+                el.textContent = importCountryName;
+            });
+
+            // Update comparison labels
+            document.getElementById('comparison-export-label').textContent = exportCountryName;
+            document.getElementById('comparison-import-label').textContent = importCountryName;
+        }
+        
+        // 初始化成本分担滑块
+        costSharingValue.textContent = costSharingSlider.value;
+        costSharingValueUS.textContent = 100 - costSharingSlider.value;
+        
+        // 滑块事件监听
+        costSharingSlider.oninput = function() {
+            costSharingValue.textContent = this.value;
+            costSharingValueUS.textContent = 100 - this.value;
+        };
+        
+        // 修复标签切换功能
+        basicTabBtn.addEventListener('click', function() {
+            basicTabBtn.classList.add('active');
+            advancedTabBtn.classList.remove('active');
+            basicTab.style.display = 'block';
+            advancedTab.style.display = 'none';
+        });
+        
+        advancedTabBtn.addEventListener('click', function() {
+            advancedTabBtn.classList.add('active');
+            basicTabBtn.classList.remove('active');
+            advancedTab.style.display = 'block';
+            basicTab.style.display = 'none';
+        });
+        
+        // 基本计算
+        calculateBtn.addEventListener('click', function() {
+            // 获取基本输入值
+            const productValue = parseFloat(document.getElementById('productValue').value) || 0;
+            const tariffRate = parseFloat(document.getElementById('tariffRate').value) || 0;
+            const seaFreight = parseFloat(document.getElementById('seaFreight').value) || 0;
+            const insurance = parseFloat(document.getElementById('insurance').value) || 0;
+            const inlandFreight = parseFloat(document.getElementById('inlandFreight').value) || 0;
+            const fuelSurcharge = parseFloat(document.getElementById('fuelSurcharge').value) || 0;
+            const costSharingChina = parseFloat(costSharingSlider.value) / 100;
+            const profitMargin = 15; // 默认利润率
+            
+            // 更新税率显示
+            document.getElementById('appliedTariffRate').textContent = tariffRate.toFixed(2) + '%';
+            
+            calculateResults(productValue, tariffRate, seaFreight, insurance, inlandFreight, fuelSurcharge, 
+                           costSharingChina, profitMargin, 0, 0, 0, 0, 0, false);
+                           
+            // 显示结果区域
+            resultsDiv.style.display = 'block';
+        });
+        
+        // 高级计算
+        calculateAdvancedBtn.addEventListener('click', function() {
+            // 获取所有输入值
+            const productValue = parseFloat(document.getElementById('productValue').value) || 0;
+            const tariffRate = parseFloat(document.getElementById('tariffRate').value) || 0;
+            const seaFreight = parseFloat(document.getElementById('seaFreight').value) || 0;
+            const insurance = parseFloat(document.getElementById('insurance').value) || 0;
+            const inlandFreight = parseFloat(document.getElementById('inlandFreight').value) || 0;
+            const fuelSurcharge = parseFloat(document.getElementById('fuelSurcharge').value) || 0;
+            const costSharingChina = parseFloat(costSharingSlider.value) / 100;
+            
+            // 获取高级选项值
+            const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 15;
+            const customsClearanceFee = parseFloat(document.getElementById('customsClearanceFee').value) || 0;
+            const handlingFee = parseFloat(document.getElementById('handlingFee').value) || 0;
+            const documentationFee = parseFloat(document.getElementById('documentationFee').value) || 0;
+            const exchangeRateFluctuation = parseFloat(document.getElementById('exchangeRateFluctuation').value) || 0;
+            const otherCosts = parseFloat(document.getElementById('otherCosts').value) || 0;
+            
+            // 更新税率显示
+            document.getElementById('appliedTariffRate').textContent = tariffRate.toFixed(2) + '%';
+            
+            calculateResults(productValue, tariffRate, seaFreight, insurance, inlandFreight, fuelSurcharge, 
+                           costSharingChina, profitMargin, customsClearanceFee, handlingFee, documentationFee, 
+                           exchangeRateFluctuation, otherCosts, true);
+                           
+            // 显示结果区域
+            resultsDiv.style.display = 'block';
+        });
+        
+        // 计算结果函数
+        function calculateResults(productValue, tariffRate, seaFreight, insurance, inlandFreight, fuelSurcharge, 
+                               costSharingChina, profitMargin, customsClearanceFee, handlingFee, documentationFee, 
+                               exchangeRateFluctuation, otherCosts, isAdvanced) {
+            
+            // Calculate FOB terms tariff
+            const cifValue_FOB = productValue + seaFreight + insurance;
+            const tariffAmount_FOB = cifValue_FOB * (tariffRate / 100);
+            const chinaShare_FOB = tariffAmount_FOB * costSharingChina;
+            const usaShare_FOB = tariffAmount_FOB * (1 - costSharingChina);
+            
+            // Update FOB results
+            document.getElementById('fob-productValue').textContent = '$' + productValue.toFixed(2);
+            document.getElementById('fob-cifValue').textContent = '$' + cifValue_FOB.toFixed(2);
+            document.getElementById('fob-tariffBase').textContent = '$' + cifValue_FOB.toFixed(2);
+            document.getElementById('fob-appliedRate').textContent = tariffRate.toFixed(2) + '%';
+            document.getElementById('fob-tariffAmount').textContent = '$' + tariffAmount_FOB.toFixed(2);
+            document.getElementById('fob-chinaShare').textContent = '$' + chinaShare_FOB.toFixed(2);
+            document.getElementById('fob-usaShare').textContent = '$' + usaShare_FOB.toFixed(2);
+            document.getElementById('fob-shareRatio').textContent = `${(costSharingChina * 100).toFixed(0)}% : ${((1 - costSharingChina) * 100).toFixed(0)}%`;
+            document.getElementById('fob-tariffSummary').textContent = '$' + tariffAmount_FOB.toFixed(2);
+            
+            // Calculate DDP terms tariff
+            const cifValue_DDP = productValue + seaFreight + insurance;
+            const tariffAmount_DDP = cifValue_DDP * (tariffRate / 100);
+            
+            // Update DDP results
+            document.getElementById('ddp-productValue').textContent = '$' + productValue.toFixed(2);
+            document.getElementById('ddp-cifValue').textContent = '$' + cifValue_DDP.toFixed(2);
+            document.getElementById('ddp-tariffBase').textContent = '$' + cifValue_DDP.toFixed(2);
+            document.getElementById('ddp-appliedRate').textContent = tariffRate.toFixed(2) + '%';
+            document.getElementById('ddp-tariffAmount').textContent = '$' + tariffAmount_DDP.toFixed(2);
+            document.getElementById('ddp-sellerTariff').textContent = '$' + tariffAmount_DDP.toFixed(2);
+            document.getElementById('ddp-buyerTariff').textContent = '$0.00';
+            document.getElementById('ddp-shareRatio').textContent = '100% : 0%';
+            document.getElementById('ddp-tariffSummary').textContent = '$' + tariffAmount_DDP.toFixed(2);
+            
+            // Calculate tariff differences
+            const tariffDifference = tariffAmount_DDP - tariffAmount_FOB;
+            const tariffBurdenChange = ((tariffAmount_DDP - chinaShare_FOB) / chinaShare_FOB * 100);
+
+            // Update comparison display
+            document.getElementById('fobTotalTariff').textContent = '$' + tariffAmount_FOB.toFixed(2);
+            document.getElementById('ddpTotalTariff').textContent = '$' + tariffAmount_DDP.toFixed(2);
+            document.getElementById('tariffDifference').textContent = '$' + Math.abs(tariffDifference).toFixed(2);
+            document.getElementById('exporterTariffBurden').textContent = '$' + (isAdvanced ? tariffAmount_DDP : chinaShare_FOB).toFixed(2);
+            document.getElementById('importerTariffBurden').textContent = '$' + (isAdvanced ? 0 : usaShare_FOB).toFixed(2);
+            document.getElementById('tariffBurdenChange').textContent = tariffBurdenChange.toFixed(2) + '%';
+
+            // Generate analysis text
+            const exportCountryName = exportCountryLabel.textContent;
+            const importCountryName = importCountryLabel.textContent;
+            
+            let analysisText = `In FOB mode, the total tariff amount is $${tariffAmount_FOB.toFixed(2)}, with ${exportCountryName} bearing $${chinaShare_FOB.toFixed(2)} and ${importCountryName} bearing $${usaShare_FOB.toFixed(2)}.`;
+            analysisText += `\nIn DDP mode, the total tariff amount is $${tariffAmount_DDP.toFixed(2)}, all borne by ${exportCountryName}.`;
+            
+            if (tariffBurdenChange > 0) {
+                analysisText += `\nConverting to DDP mode increases the tariff burden of ${exportCountryName} by ${tariffBurdenChange.toFixed(2)}%.`;
+                if (tariffBurdenChange > 50) {
+                    analysisText += `\nWarning: Significant increase in tariff burden under DDP mode, recommend careful assessment.`;
+                }
+            }
+            
+            if (tariffAmount_DDP > tariffAmount_FOB) {
+                const increasedAmount = tariffAmount_DDP - tariffAmount_FOB;
+                analysisText += `\nTotal tariff cost increases by $${increasedAmount.toFixed(2)}.`;
+            }
+            
+            // Update analysis result
+            document.getElementById('analysisResult').textContent = analysisText;
+        }
+    </script>
+</body>
+</html>
